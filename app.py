@@ -5,7 +5,7 @@ from input_utils import *
 from blackbox import *
 from output_utils import *
 
-import os
+import os, shutil
 
 app = Flask(__name__)
 
@@ -39,6 +39,13 @@ def composition_guide():
     for image in sliced_image_list:
         os.remove(input_image_dir_path + image)
     """
+
+    ## 처리된 이미지들 data 폴더에 옮기기
+    os.remove(image_path)
+    sliced_image_list = os.listdir(input_image_dir_path)
+    for image_name in sliced_image_list:
+        image_path = os.path.join(input_image_dir_path, image_name)
+        shutil.move(image_path, "./data/images")
 
     response = {
         'direction': camera_forwward_direction

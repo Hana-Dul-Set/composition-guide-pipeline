@@ -42,7 +42,7 @@ def save_all_sliced_image(input_image_path, sliced_image_dir):
     image = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
     image_name = input_image_path.split('/')[-1].split('.')[0]
     image_ext = '.' + input_image_path.split('/')[-1].split('.')[-1]
-
+    print(image_ext)
     source_image = image
     top_image = get_top_image(image)
     bottom_image = get_bottom_image(image)
@@ -54,9 +54,9 @@ def save_all_sliced_image(input_image_path, sliced_image_dir):
     original_path = os.path.join(sliced_image_dir, image_name)
     cv2.imwrite(original_path + '_s_' + image_ext, source_image)
     cv2.imwrite(original_path + '_t_' + image_ext, top_image)
-    cv2.imwrite(original_path + image_name + '_b_' + image_ext, bottom_image)
-    cv2.imwrite(original_path + image_name + '_l_' + image_ext, left_image)
-    cv2.imwrite(original_path + image_name + '_r_' + image_ext, right_image)
+    cv2.imwrite(original_path + '_b_' + image_ext, bottom_image)
+    cv2.imwrite(original_path + '_l_' + image_ext, left_image)
+    cv2.imwrite(original_path + '_r_' + image_ext, right_image)
 
     return sliced_image_dir
 
