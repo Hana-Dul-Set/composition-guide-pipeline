@@ -17,18 +17,28 @@ def composition_guide():
 
     if not os.path.exists('cache'):
         os.mkdir('cache')
-    image_path = './cache/' + image_name
+    image_dir_path = './cache/'
+    image_path = image_dir_path + image_name
     image_file.save(image_path)
-    print(image_path)
+    print(image_path, '!!!!')
 
     ## 슬라이싱하여 저장
-    image_path = get_input_image_dir_path(image_path)
+    input_image_dir_path = get_input_image_dir_path(image_path)
 
     ## 추론 후 최대가 되는 이미지 식별
-    blackbox_output = blackbox(image_path)
+    blackbox_output = blackbox(input_image_dir_path)
 
     ## 이동방향
     camera_forwward_direction = get_camera_forward_direction(blackbox_output)
+    print(camera_forwward_direction)
+
+    ## 받은 이미지와 슬라이싱한 이미지 삭제
+    """
+    os.remove(image_path)
+    sliced_image_list = os.listdir(input_image_dir_path)
+    for image in sliced_image_list:
+        os.remove(input_image_dir_path + image)
+    """
 
     response = {
         'direction': camera_forwward_direction
