@@ -17,8 +17,8 @@ def composition_guide():
 
     if not os.path.exists('cache'):
         os.mkdir('cache')
-    image_dir_path = './cache/'
-    image_path = image_dir_path + image_name
+    image_dir_path = './cache'
+    image_path = os.path.join(image_dir_path, image_name)
     image_file.save(image_path)
     print(image_path, '!!!!')
 
