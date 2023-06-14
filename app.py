@@ -5,6 +5,8 @@ from input_utils import *
 from blackbox import *
 from output_utils import *
 
+import os
+
 app = Flask(__name__)
 
 
@@ -12,6 +14,9 @@ app = Flask(__name__)
 def composition_guide():
     image_file = request.files['image']
     image_name = image_file.filename
+
+    if not os.path.exists('cache'):
+        os.mkdir('cache')
     image_path = './cache/' + image_name
     image_file.save(image_path)
     print(image_path)
