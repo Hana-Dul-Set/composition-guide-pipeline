@@ -1,3 +1,6 @@
+import os, shutil, random
+from time import time, strftime, localtime
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -6,11 +9,7 @@ from blackbox import *
 from output_utils import *
 from file_utils import *
 
-import os, shutil, random
-from time import time, strftime, localtime
-
 app = Flask(__name__)
-
 
 @app.route('/guide', methods=['POST'])
 def composition_guide():
@@ -27,7 +26,7 @@ def composition_guide():
     camera_forwward_direction = get_camera_forward_direction(blackbox_output)
     print(camera_forwward_direction)
 
-    move_used_images(request_image_path, input_image_dir_path)
+    remove_used_images(request_image_path, input_image_dir_path)
 
     response = {
         'direction': camera_forwward_direction

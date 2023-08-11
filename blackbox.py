@@ -1,14 +1,9 @@
-import sys, csv
-sys.path.append('./SAMPNet')
-
-from inference import *
+from csnet import inference_from_dir
 from file_utils import *
 
-
 def blackbox(image_dir_path):
-    print(image_dir_path, "2222")
+
     assessed_image_list = inference_from_dir(image_dir_path)
-    print(assessed_image_list, "3333")
 
     write_data(assessed_image_list)
 
